@@ -35,8 +35,10 @@ def get_compass_direction(heading):
 # Example readings from the magnetometer (X, Y, Z)
 x, y, z = 128, -230, 410  # Replace with actual sensor readings
 
+
 # Calculate the compass heading
 heading = calculate_heading(x, y)
 direction = get_compass_direction(heading)
 
+print(f"Magnetometer Readings -> X: {x}, Y: {y}, Z: {z}")
 print(f"Compass Heading: {heading:.2f}° ({direction})")
