@@ -1,4 +1,5 @@
 import math
+import time
 
 
 def calculate_heading(x, y):
@@ -32,13 +33,29 @@ def get_compass_direction(heading):
         return "NW"
 
 
-# Example readings from the magnetometer (X, Y, Z)
-x, y, z = 128, -230, 410  # Replace with actual sensor readings
+# Function to simulate reading from a data stream
+def read_magnetometer_stream():
+    # Simulated stream of magnetometer data (X, Y, Z)
+    data_stream = [
+        (128, -230, 410),
+        (130, -225, 415),
+        (120, -240, 400),
+        (135, -220, 405),
+        (140, -210, 420),
+        # Add more tuples for continuous data
+    ]
+    for data in data_stream:
+        yield data
 
 
-# Calculate the compass heading
-heading = calculate_heading(x, y)
-direction = get_compass_direction(heading)
+# Process the data stream
+for x, y, z in read_magnetometer_stream():
+    heading = calculate_heading(x, y)
+    direction = get_compass_direction(heading)
 
-print(f"Magnetometer Readings -> X: {x}, Y: {y}, Z: {z}")
-print(f"Compass Heading: {heading:.2f}° ({direction})")
+    # Print the X, Y, Z readings along with the heading and direction
+    print(f"Magnetometer Readings -> X: {x}, Y: {y}, Z: {z}")
+    print(f"Compass Heading: {heading:.2f}° ({direction})")
+
+    # Wait for a short interval to simulate real-time data processing
+    time.sleep(1)
